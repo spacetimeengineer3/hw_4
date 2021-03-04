@@ -220,7 +220,8 @@ public:
      item - The item the user wishes to add to the collection.
   */
   void push_back(T item) {
-      int
+      data[arrSize] = item;
+      arrSize++;
   }
 
 
@@ -231,7 +232,13 @@ public:
      item in the DynamicArray.
   */
   void pop_back() {
-    // TODO: Remove item from the "end" of the data array
+
+    if(arrSize != 0){
+            arrSize -= 1;
+    }
+    else{
+        std::cout << "The array is already empty!" << std::endl;
+    }
   }
 
 
@@ -300,6 +307,9 @@ private:
   //TODO: Provide any private methods (helper functions) you want here.
   //      Note that these are NOT necessary but you can add things here
   //      if you think something would be useful to your implementation.
+  void grow(){
+      //THIS GROWS THE ARRY IF NEED BE
+  }
 };
 
 
