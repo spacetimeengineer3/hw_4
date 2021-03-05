@@ -304,9 +304,8 @@ public:
                 reversearr[reversepos] = data[i];
                 reversepos++;
             }
-        delete data;
+        delete[] data;
         data = reversearr;
-        delete reversearr;
         }
   };
     void grow(){
@@ -316,10 +315,9 @@ public:
         data2[i] = data[i]; //copy the new data to data2
         //std::cout <<"COPY" << std:: endl;
       }
-    delete data; //Delete the original array
+    delete[] data; //Delete the original array
     data = data2;// SCREW DATA2, DATA IS NOW THE CAPTAIN (assign the name data to equal data2)
     arrCapacity = arrCapacity * 2; //double the arrCapacity number
-    delete data2;// delete the new array once I have run out of use for it
 
   };//
 
