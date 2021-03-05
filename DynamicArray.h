@@ -43,8 +43,8 @@ public:
     // TODO: Initialize member variables
     arrSize = 0;
     arrCapacity = 8;
-    data = new T[arrCapacity]  // FIXME: Erase this line once you allocate an address to it via new
-  }
+    data = new T[arrCapacity];
+  };
 
 
 
@@ -60,12 +60,14 @@ public:
      initialSize - The initial size (not capacity) of the DynamicArray
   */
   DynamicArray(int initialSize) {
-    // TODO: Initialize member variables w.r.t. initialSize
 
-    // TODO: Allocate memory for array data
-    arrCapacity = initialSize;
-    data = NULL; // FIXME: Erase this line when ready to write this method
-  }
+    if (initialSize > 0){
+            arrCapacity = initialSize * 2;
+            data = new T[arrCapacity];
+            arrSize = 0;
+    }
+
+};
 
 
 
@@ -82,14 +84,15 @@ public:
      defaultValue - The value to be assigned to the first initialSize items
   */
   DynamicArray(int initialSize, T defaultValue) {
-    // TODO: Initialize member variables w.r.t. daToCopy
+    if (initialSize > 0){
+            arrCapacity = initialSize * 2;
+            data = new T[arrCapacity];
+            data[0] = defaultValue;
+            arrSize = 1;
+    }
 
-    // TODO: Allocate memory for array data
+};
 
-    // TODO: Copy defaultValue into array data initialSize times
-
-    data = NULL; // FIXME: Erase this line when ready to write this method
-  }
 
 
 
@@ -220,8 +223,15 @@ public:
      item - The item the user wishes to add to the collection.
   */
   void push_back(T item) {
-      data[arrSize] = item;
-      arrSize++;
+
+      if (arrSize + 1 >= arrCapacity){
+        grow();
+        std::cout<< "GROW" << std::endl;
+      }
+      if(arrSize < arrCapacity){
+        data[arrSize] = item;
+        arrSize++;
+      }
   }
 
 
@@ -233,13 +243,10 @@ public:
   */
   void pop_back() {
 
-    if(arrSize != 0){
+    if(arrSize > 0){
             arrSize -= 1;
     }
-    else{
-        std::cout << "The array is already empty!" << std::endl;
-    }
-  }
+};
 
 
 
@@ -248,12 +255,7 @@ public:
      of items that are stored within the DynamicArray container.
   */
   int size() {
-    arrSize = 0;
-
-    for(int size=0, i )
-
-
-    return 0; // <-- FIXME: Change this to reflect actual size
+    return arrSize; // <-- FIXME: Change this to reflect actual size
   }
 
 
@@ -266,8 +268,7 @@ public:
      grow the internal array again.
   */
   int capacity() {
-    // TODO: Return the current maximum capacity of the array
-    return -1; // <-- FIXME: Change this to reflect actual capacity
+    return arrCapacity; // <-- FIXME: Change this to reflect actual capacity
   }
 
 
@@ -277,8 +278,8 @@ public:
      this, then it would return zero.
   */
   void clear() {
-    // TODO: Make the array "empty" so that it holds zero items
-  }
+    arrSize = 0;
+      }
 
 
 
@@ -296,8 +297,31 @@ public:
         arrCapacity: 8
   */
   void reverse() {
-    // TODO: Reverse the contents of the array
-  }
+        if (arrSize > 1){
+            T* reversearr = new T [arrCapacity]; //reversearr = reverse array
+            int reversepos= 0; // reversepos = reverse position
+            for(int i = arrSize -1; i >= 0; i-- ){
+                reversearr[reversepos] = data[i];
+                reversepos++;
+            }
+        delete data;
+        data = reversearr;
+        delete reversearr;
+        }
+  };
+    void grow(){
+      T* data2 = new T [arrCapacity * 2]; //Make a new array
+      //std::cout<< "ARRAY IS DOUBLE THE CAPICITY" << std::endl;
+      for(int i = 0; i < arrSize; i++){
+        data2[i] = data[i]; //copy the new data to data2
+        //std::cout <<"COPY" << std:: endl;
+      }
+    delete data; //Delete the original array
+    data = data2;// SCREW DATA2, DATA IS NOW THE CAPTAIN (assign the name data to equal data2)
+    arrCapacity = arrCapacity * 2; //double the arrCapacity number
+    delete data2;// delete the new array once I have run out of use for it
+
+  };//
 
 private:
   //////////////////////////////
@@ -307,12 +331,9 @@ private:
   //TODO: Provide any private methods (helper functions) you want here.
   //      Note that these are NOT necessary but you can add things here
   //      if you think something would be useful to your implementation.
-  void grow(){
-      //THIS GROWS THE ARRY IF NEED BE
-  }
+
+
 };
-
-
 
 
 #endif
