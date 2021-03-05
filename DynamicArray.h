@@ -255,7 +255,7 @@ public:
      of items that are stored within the DynamicArray container.
   */
   int size() {
-    return arrSize; // <-- FIXME: Change this to reflect actual size
+    return arrSize;
   }
 
 
@@ -268,7 +268,7 @@ public:
      grow the internal array again.
   */
   int capacity() {
-    return arrCapacity; // <-- FIXME: Change this to reflect actual capacity
+    return arrCapacity;
   }
 
 
@@ -307,7 +307,7 @@ public:
         delete[] data;
         data = reversearr;
         }
-  };
+  };//end reverse
     void grow(){
       T* data2 = new T [arrCapacity * 2]; //Make a new array
       //std::cout<< "ARRAY IS DOUBLE THE CAPICITY" << std::endl;
@@ -319,18 +319,15 @@ public:
     data = data2;// SCREW DATA2, DATA IS NOW THE CAPTAIN (assign the name data to equal data2)
     arrCapacity = arrCapacity * 2; //double the arrCapacity number
 
-  };//
+  };//end grow
 
 private:
   //////////////////////////////
   // Private Member Functions //
   //////////////////////////////
 
-  //TODO: Provide any private methods (helper functions) you want here.
-  //      Note that these are NOT necessary but you can add things here
-  //      if you think something would be useful to your implementation.
 
-
+//Ended up moving grow to a public member function as I was getting a bug
 };
 
 
