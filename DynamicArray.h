@@ -226,7 +226,7 @@ public:
 
       if (arrSize + 1 >= arrCapacity){
         grow();
-        std::cout<< "GROW" << std::endl;
+        //std::cout<< "GROW" << std::endl;
       }
       if(arrSize < arrCapacity){
         data[arrSize] = item;
@@ -297,6 +297,9 @@ public:
         arrCapacity: 8
   */
   void reverse() {
+      
+        int arrSize2= arrSize;
+        int arrCapacity2 = arrCapacity;
         if (arrSize > 1){
             T* reversearr = new T [arrCapacity]; //reversearr = reverse array
             int reversepos= 0; // reversepos = reverse position
@@ -306,6 +309,8 @@ public:
             }
         delete[] data;
         data = reversearr;
+        arrSize = arrSize2;
+        arrCapacity = arrCapacity2;
         }
   };//end reverse
     void grow(){
