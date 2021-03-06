@@ -1,13 +1,13 @@
 #include <iostream>
 using namespace std;
-#include "DynamicArray.h"
+#include <vector>
 
 int main() {
   cout << "[Hello DynamicArray!]" << endl;
 
 
-  DynamicArray<int> numbers;
-  DynamicArray<int> primes;
+  vector<int> numbers;
+  vector<int> primes;
   //DynamicArray<int> da2;
 
   int t = 100000;

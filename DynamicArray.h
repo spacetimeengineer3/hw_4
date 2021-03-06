@@ -278,7 +278,10 @@ public:
      this, then it would return zero.
   */
   void clear() {
+    delete[] data;
+    data = new T[arrCapacity];
     arrSize = 0;
+    arrCapacity = 8;
       }
 
 
